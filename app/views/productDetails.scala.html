@@ -1,0 +1,36 @@
+@(id: Long, imgForm: Form[models.Product], user: models.users.User, env: play.api.Environment)
+
+@main("Product Image",user) {
+
+<p class="lead">Product Details</p>
+<br>
+  <div class="col-sm-12">
+    <table class="table table-bordered table-hover table-condensed">
+      @if(flash.containsKey("success")) {
+        <div class="alert alert-success">
+          @flash.get("success")
+        </div>
+      }
+
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>ID</th>  
+        </tr>
+      </thead>
+
+      <tbody>
+            <tr>
+              @if(env.resource("public/images/productImages/" + id + ".jpg").isDefined) {
+                <td><img src="/assets/images/productImages/@(id + ".jpg")"/></td>
+              } else {
+                <td><img src="/assets/images/productImages/noImage.jpg"/></td>
+              }
+              <td class="numeric">@id</td>
+            </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>
+}
